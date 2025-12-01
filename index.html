@@ -1,16 +1,403 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Memorial</title>
+  <title>Memorial de [NOME COMPLETO]</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Descrição para quando alguém compartilhar o link -->
+  <meta name="description" content="Memorial em homenagem a [NOME COMPLETO]. Uma página de lembranças, fotos e mensagens.">
+
   <style>
-    body { font-family: Arial; margin: 40px; line-height: 1.6; }
-    .foto { width: 200px; border-radius: 10px; }
+    :root {
+      --bg: #f7f5f2;
+      --card: #ffffff;
+      --accent: #b48a4c;
+      --accent-soft: #e3d0aa;
+      --text: #333333;
+      --muted: #777777;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    header {
+      background: linear-gradient(160deg, #111, #444);
+      color: #fff;
+      padding: 40px 20px 60px;
+      text-align: center;
+    }
+
+    header .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffffffaa;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+
+    header .dates {
+      font-size: 0.98rem;
+      color: #f1e9d8;
+      margin-bottom: 12px;
+    }
+
+    header .phrase {
+      font-style: italic;
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    nav {
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      gap: 8px;
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    nav a {
+      display: block;
+      padding: 6px 12px;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-color: var(--accent-soft);
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 24px auto 60px;
+      padding: 0 16px;
+    }
+
+    section {
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #ddd;
+      display: inline-block;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      margin-bottom: 14px;
+    }
+
+    .about p {
+      margin-bottom: 10px;
+      text-align: justify;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2fr 1.4fr;
+      gap: 16px;
+    }
+
+    .info-list {
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .info-list li {
+      margin-bottom: 6px;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    .timeline-item {
+      border-left: 2px solid var(--accent-soft);
+      padding-left: 10px;
+      margin-left: 4px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-item .year {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      border: 1px solid #eee;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .quote {
+      border-left: 3px solid var(--accent-soft);
+      padding-left: 10px;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .messages-list {
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .messages-list li {
+      margin-bottom: 10px;
+    }
+
+    .msg-author {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+      padding: 20px;
+      border-top: 1px solid #e0e0e0;
+      background: #faf9f7;
+      margin-top: 40px;
+    }
+
+    .qrcode-box {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .qrcode-box img {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 8px;
+    }
+
+    /* Responsivo */
+    @media (max-width: 720px) {
+      header {
+        padding: 28px 14px 40px;
+      }
+
+      header h1 {
+        font-size: 1.6rem;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>Memorial de [Nome]</h1>
-  <img class="foto" src="FOTO_AQUI.jpg" alt="Foto">
-  <p>Escreva aqui a história, mensagens, informações, lembranças, datas, curiosidades...</p>
+
+  <!-- TOPO / CABEÇALHO -->
+  <header>
+    <!-- Troque o link abaixo pela URL da sua foto (pode ser uma imagem enviada ao próprio GitHub) -->
+    <img class="avatar" src="FOTO-PRINCIPAL.jpg" alt="Foto de [NOME COMPLETO]">
+
+    <h1>Memorial de [NOME COMPLETO]</h1>
+    <div class="dates">
+      * [DATA DE NASCIMENTO] &nbsp; • &nbsp; ✝ [DATA DE FALECIMENTO]
+    </div>
+    <p class="phrase">
+      “[FRASE CURTA / VERSÍCULO / MENSAGEM QUE RESUME A PESSOA]”
+    </p>
+  </header>
+
+  <!-- MENU DE SEÇÕES -->
+  <nav>
+    <ul>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#linha-do-tempo">Linha do tempo</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+      <li><a href="#mensagens">Mensagens</a></li>
+      <li><a href="#qrcode">QR Code</a></li>
+    </ul>
+  </nav>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main>
+
+    <!-- SEÇÃO SOBRE -->
+    <section id="sobre">
+      <h2 class="section-title">Sobre</h2>
+      <div class="card about grid-2">
+        <div>
+          <p>
+            [Escreva aqui um texto contando a história da pessoa: infância, família,
+            profissão, valores, como era o jeito dela, o que mais gostava de fazer,
+            lembranças marcantes, etc.]
+          </p>
+          <p>
+            [Você pode escrever em forma de carta, por exemplo: “Você foi luz na vida de
+            todos que te conheceram...”]
+          </p>
+        </div>
+        <div>
+          <ul class="info-list">
+            <li><span class="info-label">Nome completo:</span> [NOME COMPLETO]</li>
+            <li><span class="info-label">Nascimento:</span> [DATA, CIDADE, ESTADO]</li>
+            <li><span class="info-label">Falecimento:</span> [DATA, CIDADE, ESTADO]</li>
+            <li><span class="info-label">Familiares:</span> [NOMES / PARENTES]</li>
+            <li><span class="info-label">Profissão:</span> [PROFISSÃO / OCUPAÇÃO]</li>
+            <li><span class="info-label">Virtudes:</span> [AMOROSO(A), HONESTO(A), ALEGRE, etc.]</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO LINHA DO TEMPO -->
+    <section id="linha-do-tempo">
+      <h2 class="section-title">Linha do tempo</h2>
+      <div class="card">
+        <div class="timeline-item">
+          <div class="year">[ANO / DATA]</div>
+          <div>[Descreva um acontecimento importante, ex: nascimento, casamento, formatura, conquista, etc.]</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">[ANO / DATA]</div>
+          <div>[Outro marco importante da vida.]</div>
+        </div>
+        <div class="timeline-item">
+          <div class="year">[ANO / DATA]</div>
+          <div>[Você pode adicionar quantos quiser, copiando esse bloco.]</div>
+        </div>
+        <p class="note">
+          (Você pode editar e adicionar mais momentos que representem a história de vida.)
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO GALERIA -->
+    <section id="galeria">
+      <h2 class="section-title">Galeria de fotos</h2>
+      <div class="card">
+        <div class="gallery-grid">
+          <!-- Substitua pelos caminhos das fotos que você enviar para o GitHub -->
+          <img src="fotos/foto1.jpg" alt="Foto 1">
+          <img src="fotos/foto2.jpg" alt="Foto 2">
+          <img src="fotos/foto3.jpg" alt="Foto 3">
+          <img src="fotos/foto4.jpg" alt="Foto 4">
+        </div>
+        <p class="note">
+          (Adicione mais fotos copiando as linhas de <code>&lt;img&gt;</code> e alterando o nome dos arquivos.)
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO MENSAGENS -->
+    <section id="mensagens">
+      <h2 class="section-title">Mensagens e lembranças</h2>
+      <div class="card">
+        <p class="quote">
+          “[Escreva aqui uma mensagem principal da família, por exemplo: ‘Saudades eternas.
+          Obrigado por tudo o que nos ensinou. Você vive em cada memória e em cada gesto de amor que deixou.’]”
+        </p>
+
+        <ul class="messages-list" style="margin-top: 12px;">
+          <li>
+            <div class="msg-author">[NOME DO(A) FILHO(A)]</div>
+            <div>[Mensagem curta em primeira pessoa, ex: “Pai, sua força e carinho sempre serão meu exemplo...”]</div>
+          </li>
+          <li>
+            <div class="msg-author">[NOME DE OUTRO FAMILIAR OU AMIGO]</div>
+            <div>[Outra mensagem de homenagem.]</div>
+          </li>
+          <!-- Copie esse bloco <li> para adicionar mais mensagens -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- SEÇÃO QR CODE -->
+    <section id="qrcode">
+      <h2 class="section-title">QR Code do memorial</h2>
+      <div class="card qrcode-box">
+        <!-- Depois que gerar o QR Code, salve a imagem no repositório e troque o src abaixo -->
+        <img src="qrcode-memorial.png" alt="QR Code para acessar este memorial">
+        <p>
+          Este QR Code pode ser gravado ou colado na lápide.<br>
+          Ao ser escaneado, ele traz as pessoas até esta página de lembranças.
+        </p>
+        <p class="note">
+          (Para gerar o QR Code, use um gerador online e coloque a URL deste site, por exemplo:
+          <code>https://seu-usuario.github.io</code>)
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Memorial em homenagem a [NOME COMPLETO].<br>
+    Criado com amor pela família. Conteúdo destinado apenas a fins afetivos.
+  </footer>
+
 </body>
 </html>
