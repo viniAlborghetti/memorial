@@ -5,8 +5,7 @@
   <title>Memorial de [NOME COMPLETO]</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Descrição para quando alguém compartilhar o link -->
-  <meta name="description" content="Memorial em homenagem a [NOME COMPLETO]. Uma página de lembranças, fotos e mensagens.">
+  <meta name="description" content="Memorial em homenagem a [NOME COMPLETO]. Uma página de lembranças, fotos, histórias e mensagens.">
 
   <style>
     :root {
@@ -40,39 +39,67 @@
       text-decoration: underline;
     }
 
+    /* CABEÇALHO NOVO COM FOTO À DIREITA */
     header {
       background: linear-gradient(160deg, #111, #444);
       color: #fff;
-      padding: 40px 20px 60px;
-      text-align: center;
+      padding: 32px 16px 40px;
     }
 
-    header .avatar {
-      width: 140px;
-      height: 140px;
+    .header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .header-left {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+
+    .header-right {
+      flex: 0 0 260px;
+      max-width: 320px;
+    }
+
+    .header-right img {
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+      aspect-ratio: 4 / 5;
+      border: 3px solid #ffffff55;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #ffffffaa;
-      margin-bottom: 16px;
+      border: 3px solid #ffffffaa;
+      margin-bottom: 10px;
     }
 
-    header h1 {
-      font-size: 2.1rem;
-      margin-bottom: 8px;
+    .name-block h1 {
+      font-size: 2rem;
+      margin-bottom: 4px;
       letter-spacing: 0.03em;
     }
 
-    header .dates {
-      font-size: 0.98rem;
+    .dates {
+      font-size: 0.95rem;
       color: #f1e9d8;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
-    header .phrase {
+    .phrase {
       font-style: italic;
-      font-size: 0.95rem;
-      max-width: 480px;
-      margin: 0 auto;
+      font-size: 0.9rem;
+      max-width: 420px;
       opacity: 0.9;
     }
 
@@ -218,6 +245,24 @@
       color: var(--accent);
     }
 
+    /* BLOG / HISTÓRIAS */
+    .stories-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .story-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .story-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
     footer {
       text-align: center;
       font-size: 0.8rem;
@@ -242,10 +287,20 @@
     /* Responsivo */
     @media (max-width: 720px) {
       header {
-        padding: 28px 14px 40px;
+        padding: 20px 12px 28px;
       }
 
-      header h1 {
+      .header-inner {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      .header-right {
+        align-self: center;
+        max-width: 260px;
+      }
+
+      .name-block h1 {
         font-size: 1.6rem;
       }
 
@@ -257,46 +312,57 @@
 </head>
 <body>
 
-  <!-- TOPO / CABEÇALHO -->
+  <!-- CABEÇALHO COM FOTO À ESQUERDA + FOTO MAIOR À DIREITA -->
   <header>
-    <!-- Troque o link abaixo pela URL da sua foto (pode ser uma imagem enviada ao próprio GitHub) -->
-    <img class="avatar" src="FOTO-PRINCIPAL.jpg" alt="Foto de [NOME COMPLETO]">
+    <div class="header-inner">
+      <div class="header-left">
+        <!-- Foto principal em formato avatar -->
+        <img class="avatar" src="FOTO-PRINCIPAL.jpg" alt="Foto de [NOME COMPLETO]">
 
-    <h1>Memorial de [NOME COMPLETO]</h1>
-    <div class="dates">
-      * [DATA DE NASCIMENTO] &nbsp; • &nbsp; ✝ [DATA DE FALECIMENTO]
+        <div class="name-block">
+          <h1>Memorial de [NOME COMPLETO]</h1>
+          <div class="dates">
+            * [DATA DE NASCIMENTO] &nbsp; • &nbsp; ✝ [DATA DE FALECIMENTO]
+          </div>
+          <p class="phrase">
+            “[FRASE CURTA / VERSÍCULO / MENSAGEM QUE RESUME A PESSOA]”
+          </p>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- NOVO: Foto maior ao lado direito (pode ser em família, paisagem especial, etc.) -->
+        <img src="FOTO-LATERAL.jpg" alt="Imagem em memória de [NOME COMPLETO]">
+      </div>
     </div>
-    <p class="phrase">
-      “[FRASE CURTA / VERSÍCULO / MENSAGEM QUE RESUME A PESSOA]”
-    </p>
   </header>
 
-  <!-- MENU DE SEÇÕES -->
+  <!-- MENU -->
   <nav>
     <ul>
       <li><a href="#sobre">Sobre</a></li>
       <li><a href="#linha-do-tempo">Linha do tempo</a></li>
+      <li><a href="#historias">Histórias da vida</a></li>
       <li><a href="#galeria">Galeria</a></li>
       <li><a href="#mensagens">Mensagens</a></li>
       <li><a href="#qrcode">QR Code</a></li>
     </ul>
   </nav>
 
-  <!-- CONTEÚDO PRINCIPAL -->
+  <!-- CONTEÚDO -->
   <main>
 
-    <!-- SEÇÃO SOBRE -->
+    <!-- SOBRE -->
     <section id="sobre">
       <h2 class="section-title">Sobre</h2>
       <div class="card about grid-2">
         <div>
           <p>
             [Escreva aqui um texto contando a história da pessoa: infância, família,
-            profissão, valores, como era o jeito dela, o que mais gostava de fazer,
-            lembranças marcantes, etc.]
+            profissão, valores, jeito de ser, o que mais gostava de fazer, lembranças marcantes, etc.]
           </p>
           <p>
-            [Você pode escrever em forma de carta, por exemplo: “Você foi luz na vida de
+            [Pode ser em forma de carta, por exemplo: “Você foi luz na vida de
             todos que te conheceram...”]
           </p>
         </div>
@@ -313,13 +379,13 @@
       </div>
     </section>
 
-    <!-- SEÇÃO LINHA DO TEMPO -->
+    <!-- LINHA DO TEMPO -->
     <section id="linha-do-tempo">
       <h2 class="section-title">Linha do tempo</h2>
       <div class="card">
         <div class="timeline-item">
           <div class="year">[ANO / DATA]</div>
-          <div>[Descreva um acontecimento importante, ex: nascimento, casamento, formatura, conquista, etc.]</div>
+          <div>[Acontecimento importante – nascimento, mudança, casamento, etc.]</div>
         </div>
         <div class="timeline-item">
           <div class="year">[ANO / DATA]</div>
@@ -330,12 +396,46 @@
           <div>[Você pode adicionar quantos quiser, copiando esse bloco.]</div>
         </div>
         <p class="note">
-          (Você pode editar e adicionar mais momentos que representem a história de vida.)
+          (Edite e adicione mais momentos que representem a história de vida.)
         </p>
       </div>
     </section>
 
-    <!-- SEÇÃO GALERIA -->
+    <!-- BLOG / HISTÓRIAS DA VIDA -->
+    <section id="historias">
+      <h2 class="section-title">Histórias da vida</h2>
+      <div class="card">
+        <p class="note" style="margin-bottom:10px;">
+          Aqui você pode escrever como se fosse um blog: situações marcantes, aprendizados,
+          memórias específicas, fases da vida. Cada bloco abaixo é uma história.
+        </p>
+        <div class="stories-list">
+
+          <!-- HISTÓRIA 1 -->
+          <article>
+            <div class="story-title">[Título da história – ex: “A viagem que mudou minha vida”]</div>
+            <div class="story-meta">[Data ou ano aproximado – ex: 2012, Curitiba]</div>
+            <p>
+              [Conte aqui em detalhes o que aconteceu, como você se sentiu, o que aprendeu,
+              quem estava com você. Pode escrever em primeira pessoa, como se fosse um diário.]
+            </p>
+          </article>
+
+          <!-- HISTÓRIA 2 -->
+          <article>
+            <div class="story-title">[Outro título – ex: “Como comecei na construção civil”]</div>
+            <div class="story-meta">[Ano aproximado – ex: 2009]</div>
+            <p>
+              [Conte sua trajetória, dificuldades, vitórias, pessoas importantes nesse processo.]
+            </p>
+          </article>
+
+          <!-- Para adicionar mais histórias, copie o bloco <article> inteiro e cole abaixo -->
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
     <section id="galeria">
       <h2 class="section-title">Galeria de fotos</h2>
       <div class="card">
@@ -352,42 +452,50 @@
       </div>
     </section>
 
-    <!-- SEÇÃO MENSAGENS -->
+    <!-- MENSAGENS E LEMBRANÇAS -->
     <section id="mensagens">
       <h2 class="section-title">Mensagens e lembranças</h2>
       <div class="card">
+        <p class="note" style="margin-bottom:8px;">
+          Esta seção pode ser usada de duas formas:
+          (1) mensagens que você deixa para as pessoas ou
+          (2) mensagens que familiares/amigos deixam para você (alguém da família pode atualizar o site com elas).
+        </p>
+
         <p class="quote">
-          “[Escreva aqui uma mensagem principal da família, por exemplo: ‘Saudades eternas.
-          Obrigado por tudo o que nos ensinou. Você vive em cada memória e em cada gesto de amor que deixou.’]”
+          “[Mensagem principal da família – ex: ‘Saudades eternas. Você vive em cada memória e em cada gesto de amor que deixou.’]”
         </p>
 
         <ul class="messages-list" style="margin-top: 12px;">
           <li>
-            <div class="msg-author">[NOME DO(A) FILHO(A)]</div>
-            <div>[Mensagem curta em primeira pessoa, ex: “Pai, sua força e carinho sempre serão meu exemplo...”]</div>
+            <div class="msg-author">[NOME DO(A) FILHO(A) OU FAMILIAR]</div>
+            <div>
+              [Mensagem em primeira pessoa. Ex: “Pai, sua força e seu carinho sempre serão meu exemplo...”]
+            </div>
           </li>
           <li>
-            <div class="msg-author">[NOME DE OUTRO FAMILIAR OU AMIGO]</div>
-            <div>[Outra mensagem de homenagem.]</div>
+            <div class="msg-author">[NOME DE UM AMIGO(A)]</div>
+            <div>
+              [Outra mensagem de homenagem, lembrando algum momento juntos.]
+            </div>
           </li>
           <!-- Copie esse bloco <li> para adicionar mais mensagens -->
         </ul>
       </div>
     </section>
 
-    <!-- SEÇÃO QR CODE -->
+    <!-- QR CODE -->
     <section id="qrcode">
       <h2 class="section-title">QR Code do memorial</h2>
       <div class="card qrcode-box">
-        <!-- Depois que gerar o QR Code, salve a imagem no repositório e troque o src abaixo -->
         <img src="qrcode-memorial.png" alt="QR Code para acessar este memorial">
         <p>
           Este QR Code pode ser gravado ou colado na lápide.<br>
           Ao ser escaneado, ele traz as pessoas até esta página de lembranças.
         </p>
         <p class="note">
-          (Para gerar o QR Code, use um gerador online e coloque a URL deste site, por exemplo:
-          <code>https://seu-usuario.github.io</code>)
+          (Para gerar o QR Code, use um gerador online e coloque a URL deste site,
+          por exemplo: <code>https://seu-usuario.github.io</code>)
         </p>
       </div>
     </section>
@@ -398,6 +506,9 @@
     Memorial em homenagem a [NOME COMPLETO].<br>
     Criado com amor pela família. Conteúdo destinado apenas a fins afetivos.
   </footer>
+
+</body>
+</html>
 
 </body>
 </html>
